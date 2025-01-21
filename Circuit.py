@@ -18,17 +18,17 @@ class Circuit:
         return
 
     def add_resistor(self, resistor: Resistor):
-        instance = (resistor.name, resistor.bus1.name, resistor.bus2.name)
+        instance = (resistor.name, resistor.bus1, resistor.bus2)
         self.resistors[instance] = resistor
         return
 
     def add_load(self, load: Load):
-        instance = (load.name, load.bus1.name)
+        instance = (load.name, load.bus1)
         self.loads[instance] = load
         return
 
     def add_vsource(self, vsource: Vsource):
-        instance = (vsource.name, vsource.bus1.name)
+        instance = (vsource.name, vsource.bus1)
         self.vsources[instance] = vsource
         return
 
@@ -51,27 +51,29 @@ if __name__ == '__main__':
     circuit = Circuit("Test Circuit", 0)
 
     # Create some Bus instances
-    bus1 = Bus("Bus1", 12)
-    bus2 = Bus("Bus2", 0)
+    bus1 = Bus("BusA")
+    bus2 = Bus("BusB")
+    bus1.set_bus_v(10)
+    bus2.set_bus_v(20)
 
     # Add buses to the circuit
     circuit.add_bus(bus1)
     circuit.add_bus(bus2)
 
     # Create a Resistor instance
-    resistor1 = Resistor("R1", bus1, bus2, 100)
+    resistor1 = Resistor("R1", "BusA", "BusB", 100)
 
     # Add resistor to the circuit
     circuit.add_resistor(resistor1)
 
     # Create a Load instance
-    load1 = Load("L1", bus1, 50, 5)
+    load1 = Load("L1", "BusA", 50, 5)
 
     # Add load to the circuit
     circuit.add_load(load1)
 
     # Create a Vsource instance
-    vsource1 = Vsource("V1", bus1, 12)
+    vsource1 = Vsource("V1", "BusA", 12)
 
     # Add voltage source to the circuit
     circuit.add_vsource(vsource1)

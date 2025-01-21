@@ -1,6 +1,6 @@
 class Load:
     # Constructor for the class
-    def __init__(self, name, bus1, p, v):
+    def __init__(self, name:str, bus1:str, p:float, v:float):
         # Attributes
         self.name = name
         self.bus1 = bus1
@@ -11,7 +11,7 @@ class Load:
     # Function for calculating the conductance of the load
     def calc_g(self):
         # Uses P = V^2/R to find R and G = 1/R for conductance, not sure if this works, will test
-        self.g = 1 / (self.p / self.v**2)
+        self.g = 1 / (self.v**2 / self.p)
         return self.g
 
 if __name__ == '__main__':

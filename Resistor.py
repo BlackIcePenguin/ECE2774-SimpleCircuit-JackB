@@ -1,6 +1,6 @@
 class Resistor:
     # Constructor for the class
-    def __init__(self, name, bus1, bus2, r):
+    def __init__(self, name:str, bus1:str, bus2:str, r:float):
         # Attributes
         self.name = name
         self.bus1 = bus1
